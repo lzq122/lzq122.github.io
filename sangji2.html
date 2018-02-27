@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+<style>
+.viz-biPartite-subBar{
+	shape-rendering:crispEdges;
+}
+.viz-biPartite-mainBar{
+  fill-opacity: 0;
+  stroke-width: 0.5px;
+  stroke: rgb(0, 0, 0);
+  stroke-opacity: 0;
+}
+</style>
+<body>
+<svg width="960" height="700">
+<g transform="translate(50,50)" id="g1"></g>
+<g transform="translate(500,50)" id="g2"></g>
+</svg>
+<script src="sangji2.js"></script>
+<script src="viz13.js"></script>
+<script>
+
+data=[
+ ['A','X', 2, 3]
+,['A','Y', 3, 9]
+,['B','X', 5, 1]
+,['B','Y', 8, 4]
+,['C','X', 2, 8]
+,['C','Y', 9, 7]
+];
+
+var bP1 = viz.biPartite()
+	.data(data)
+
+var bP2 = viz.biPartite()
+	.value(d=>d[3])
+	.data(data)
+	
+d3.select("#g1")
+	.call(bP1)
+	.selectAll(".viz-biPartite-mainBar")
+	.on("mouseover",mouseover)
+	.on("mouseout",mouseout)
+
+d3.select("#g2")
+	.call(bP2)
+	.selectAll(".viz-biPartite-mainBar")
+	.on("mouseover",mouseover)
+	.on("mouseout",mouseout)
+
+function mouseover(d){ // mouseover both bP's
+	bP1.mouseover(d);
+	bP2.mouseover(d);
+}
+
+function mouseout(d){ // mouseout both bP's
+	bP1.mouseout(d);
+	bP2.mouseout(d);
+}
+	
+// adjust the bl.ocks frame dimension. Not part of example.
+d3.select(self.frameElement).style("height", "700px"); 
+</script>

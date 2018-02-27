@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+<style>
+.viz-biPartite-subBar{
+	shape-rendering:crispEdges;
+}
+.viz-biPartite-mainBar{
+  fill-opacity: 0;
+  stroke-width: 0.5px;
+  stroke: rgb(0, 0, 0);
+  stroke-opacity: 0;
+}
+</style>
+<body>
+<svg width="960" height="700">
+<g transform="translate(250,50)"></g>
+</svg>
+<script src="sangji2.js"></script>
+<script src="viz13.js"></script>
+<script>
+
+data=[
+['A','X', 2]
+,['A','Y', 3]
+,['B','X', 5]
+,['B','Y', 8]
+,['C','X', 2]
+,['C','Y', 9]
+];
+
+var bP = viz.biPartite()
+	.data(data)
+
+d3.select("g").call(bP);
+
+setInterval(update, 2000)
+
+function update(){
+	var newdata = data.map(function(d){ return (d[2]=10*Math.random(), d)})
+
+	bP.update(newdata)
+}
+
+// adjust the bl.ocks frame dimension. Not part of example.
+d3.select(self.frameElement).style("height", "700px"); 
+</script>
