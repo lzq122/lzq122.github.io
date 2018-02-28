@@ -1,0 +1,24 @@
+.admin-main .layui-field-title .layui-field-box{
+	padding: 10px 30px;
+}
+.admin-main .layui-field-title .layui-field-box p{
+	padding: 5px 0;
+}
+.left-pic {
+	background-color: #ffffff;
+	position: relative;
+	border-radius: 2px;
+	width: 48%;
+	height: 300px;
+	padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.left-pic-title {
+	border-bottom: 1px solid #eeeeee;
+}
+.pic {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
