@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+	<div class="admin-main">
+		<div class="row  border-bottom white-bg dashboard-header">
+			<div class="col-sm-12">
+				<p>规模模块展示不同年份、作者、机构单位、期刊对应的文献数量，可反映文献所收集文献不同时期的规模大小，以及不同作者、机构单位、期刊在该领域的发文频率。</p>
+			</div>
+		</div>
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>文献数量&amp;年份</h5>
+							<div>
+							<div id="main1"  style="width: 100%;height:358px;"></div>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="echarts" id="echarts-line-chart"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>文献数量&amp;作者</h5>
+							<div class="pic">
+							  <div id="main2"  style="width: 100%;height: 350px;padding-top: 10px;"></div> 
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="echarts" id="echarts-bar-chart"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>文献数量&amp;机构单位</h5>
+							<div>
+								<div class="pic">
+									<div id="main3"  style="width: 100%;height: 350px;padding-top: 10px;"></div> 
+								</div>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="echarts" id="echarts-line-chart"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>文献数量&amp;期刊</h5>
+							<div class="pic">
+								<div id="main4"  style="width: 100%;height: 350px;padding-top: 10px;"></div> 
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="echarts" id="echarts-bar-chart"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../js/echarts.js"></script>
+<script src="../js/world.js"></script>
+<script src="../js/scale.js"></script>
+</html>

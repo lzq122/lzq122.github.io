@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+	<div class="admin-main">
+		<div class="row  border-bottom white-bg dashboard-header">
+			<div class="col-sm-12">
+				<p>发展模块从文献主题、热点词、突发词三方面展示文献涉及领域的发展概况。</p>
+			</div>
+		</div>
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>主题河流图</h5>
+							
+								<div id="main"  style="width: 100%;height: 385px;padding-top: 10px;"></div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>热点词云图</h5>
+							<div>
+								<div id="main1"  style="width: 100%;height:385px;padding-top: 10px;"></div>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="echarts" id="echarts-line-chart"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>突发词云图</h5>
+							<div class="pic">
+								<div id="main2"  style="width: 100%;height: 385px;padding-top: 10px;"></div> 
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="echarts" id="echarts-bar-chart"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../js/echarts.js"></script>
+<script src="../js/jquery-3.2.0.js"></script>
+<script src="../js/dataTool.js"></script>
+<script src="../js/wordcloud.js"></script>
+<script src="../js/development.js"></script>
+</html>
