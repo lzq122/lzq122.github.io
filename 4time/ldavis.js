@@ -422,7 +422,7 @@
             });
 
         svg.append("text")
-            .text("医疗健康信息领域主题可视化图谱（Ⅳ时期）by岳丽欣")
+            .text("医疗健康信息领域主题可视化图谱（Ⅳ时期）")
             .attr("x", mdswidth/2 + margin.left)
             .attr("y", 30)
 	    .style("font-size", "16px")
