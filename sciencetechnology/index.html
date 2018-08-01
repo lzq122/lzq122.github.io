@@ -13,8 +13,6 @@
   
   <body>
     <script>
-    // setup a chart with a json file and add the visualization to a DOM element
-    // var myChart = sequenceExplorer.chart(); // no parameter when data is embedded in <pre id="data"> tag
     var myChart = sequenceExplorer.chart("ts.csv") // load data from a json file
       .eventOrder(["1Ltopic9","2Ltopic8","3Ltopic4","4Ltopic12","5Ltopic5","6Ltopic7","7Ltopic13","8Ltopic4","9Ltopic13","10Ltopic10","1Ztopic4","2Ztopic2","3Ztopic6","4Ztopic13","5Ztopic3","6Ztopic9","7Ztopic8","8Ztopic1","9Ztopic7","10Ztopic10"]) // changing the order of the events on the y axis
       .sequenceName("time")
