@@ -1,0 +1,32 @@
+﻿{
+ "name": "flare",
+ "children": [
+  {
+   "name": "主题1 文献计量",
+   "children": [
+      {"name": "关键词分析", "size": 3938},
+      {"name": "引文分析", "size": 3812},
+      {"name": "可视化", "size": 6714},
+      {"name": "citespace", "size": 743}
+     ]
+     },
+{
+   "name": "主题2 信息管理",
+   "children": [
+      {"name": "数据开放", "size": 938},
+      {"name": "信息资源管理", "size": 3812},
+      {"name": "医疗健康信息", "size": 714},
+      {"name": "知识管理", "size": 743}
+     ]
+     },
+{
+   "name": "主题3 自然语言处理",
+   "children": [
+      {"name": "数据挖掘", "size": 4393},
+      {"name": "语义分析", "size": 812},
+      {"name": "知识图谱", "size": 614},
+      {"name": "LDA模型", "size": 743}
+     ]
+     }
+   ]
+  }
