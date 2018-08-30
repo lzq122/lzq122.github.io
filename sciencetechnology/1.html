@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+  <meta charset="utf-8"> <!-- also save this file as unicode-8 ! -->
+  <head>  
+    <link rel="stylesheet" type="text/css" href="1.css">
+    <script src="d3.v4.min.js"></script>
+    <script src="min.js"></script>
+<style>      
+      rect.nx2016.nyT-0, rect.nx2001.nyT-1, rect.nx2001.nyT-2, rect.nx2003.nyT-3, rect.nx2013.nyT-4, rect.nx2000.nyT-5, rect.nx2006.nyT-6, rect.nx2012.nyT-7, rect.nx2009.nyT-8, rect.nx2000.nyT-9, rect.nx2008.nyT-10, rect.nx2008.nyT-11, rect.nx2016.nyT-12, rect.nx2003.nyT-13, rect.nx2001.nyT-14 {
+         fill: red;
+      }
+ path.lsx2009.lsyS-10.ltx2016.ltyT-0,
+path.lsx2000.lsyS-11.ltx2001.ltyT-2,
+path.lsx1982.lsyS-12.ltx2012.ltyT-7,
+path.lsx1982.lsyS-12.ltx2016.ltyT-0,
+path.lsx1982.lsyS-12.ltx2008.ltyT-10,
+path.lsx1982.lsyS-12.ltx2000.ltyT-9,
+path.lsx1982.lsyS-12.ltx2016.ltyT-12,
+path.lsx1982.lsyS-12.ltx2000.ltyT-5,
+path.lsx1982.lsyS-12.ltx2006.ltyT-6,
+path.lsx1982.lsyS-12.ltx2008.ltyT-11,
+path.lsx1982.lsyS-12.ltx2001.ltyT-2,
+path.lsx2015.lsyS-6.ltx2016.ltyT-12,
+path.lsx2000.lsyS-7.ltx2001.ltyT-2,
+path.lsx2000.lsyS-7.ltx2001.ltyT-1,
+path.lsx2000.lsyS-7.ltx2016.ltyT-0,
+path.lsx2000.lsyS-7.ltx2008.ltyT-11,
+path.lsx1996.lsyS-8.ltx2003.ltyT-13,
+path.lsx2007.lsyS-9.ltx2008.ltyT-10,
+path.lsx2007.lsyS-9.ltx2012.ltyT-7,
+path.lsx2007.lsyS-9.ltx2016.ltyT-0 {
+        stroke: blue;
+        stroke-opacity: .5;
+      }
+path.lsx2001.lsyT-1.ltx2017.ltyS-2,
+path.lsx2001.lsyT-1.ltx2007.ltyS-9,
+path.lsx2008.lsyT-10.ltx2017.ltyS-2,
+path.lsx2008.lsyT-11.ltx2017.ltyS-2,
+path.lsx2003.lsyT-13.ltx2015.ltyS-6,
+path.lsx2001.lsyT-2.ltx2007.ltyS-9,
+path.lsx2001.lsyT-2.ltx2017.ltyS-2,
+path.lsx2001.lsyT-2.ltx2015.ltyS-6,
+path.lsx2003.lsyT-3.ltx2015.ltyS-6,
+path.lsx2000.lsyT-5.ltx2015.ltyS-6,
+path.lsx2000.lsyT-5.ltx2007.ltyS-9,
+path.lsx2000.lsyT-5.ltx2009.ltyS-10,
+path.lsx2000.lsyT-5.ltx2017.ltyS-2,
+path.lsx2006.lsyT-6.ltx2017.ltyS-1,
+path.lsx2006.lsyT-6.ltx2017.ltyS-2,
+path.lsx2006.lsyT-6.ltx2009.ltyS-10,
+path.lsx2006.lsyT-6.ltx2007.ltyS-9,
+path.lsx2012.lsyT-7.ltx2017.ltyS-2,
+path.lsx2000.lsyT-9.ltx2017.ltyS-1,
+path.lsx2000.lsyT-9.ltx2007.ltyS-9 {
+        stroke: orange;
+        stroke-opacity: .5;
+      }  
+    </style>
+  </head>
+  
+  <body>
+    <script>
+    // setup a chart with a json file and add the visualization to a DOM element
+    // var myChart = sequenceExplorer.chart(); // no parameter when data is embedded in <pre id="data"> tag
+    var myChart = sequenceExplorer.chart("2.csv") // load data from a json file
+      .eventOrder(["S-0","S-1","S-2","S-3","S-4","S-5","S-6","S-7","S-8","S-9","S-10","S-11","S-12","S-13","S-14","T-0","T-1","T-2","T-3","T-4","T-5","T-6","T-7","T-8","T-9","T-10","T-11","T-12","T-13","T-14"]) // changing the order of the events on the y axis
+      .sequenceName("time")
+      .nodePadding(0.01)
+      .size([1700,900]);
+
+    d3.select("body")
+      .append("div")
+      .attr("class", "chart")
+      .call(myChart);
+      
+    </script>
+  </body>
+</html> 
