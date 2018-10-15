@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+  <meta charset="utf-8"> <!-- also save this file as unicode-8 ! -->
+  <head>
+    <link rel="stylesheet" type="text/css" href="1.css">
+  
+    <!--script src="js"></script-->
+    <script src="2.js"></script> 
+    <script src="3.js"></script>
+    <script src="4.js"></script>
+   
+  </head>
+  
+  <body>
+    <script>
+    // no parameter when data is embedded in <pre id="data"> tag, otherwise sequenceExplorerChart(file);
+    // var myChart = sequenceExplorerChart();
+    var myChart = sequenceExplorerChart("nsf666.csv")
+      
+      
+      .sequenceName("时间")
+      .categoryName("主题")
+      .valueName("相似度")
+      .size([1200,700]);
+      
+    d3.select("body")
+      .append("div")
+      .attr("class", "chart")
+      .call(myChart);
+      
+    </script>
+  </body>
+</html>  

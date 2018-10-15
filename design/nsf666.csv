@@ -1,0 +1,5 @@
+value,sourceX,sourceY,targetX,targetY
+0.4,t0,lwT0,t1,nsfTn
+0.6,t0,nsfTn,t1,lwT0
+0.5,t1,lwT0,tn,nsfT0
+0.1,t1,nsfTn,tn,lwTn
