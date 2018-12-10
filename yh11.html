@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://unpkg.com/d3@4.10.0"></script>
+    <script src="https://unpkg.com/d3-area-label@1.2.0"></script>
+    <title>情报历史演化</title>
+    <style>
+      body {
+        margin: 0px;
+      }
+      .area-label {
+        font-family: sans-serif;
+        fill-opacity: 0.7;
+        fill: white;
+      }
+      path:hover {
+        fill-opacity: 1;
+        fill:black;
+      }
+      path {
+        fill-opacity: 0.8;
+        stroke-width: 0.5;
+      }
+      text {
+        pointer-events: none;
+      }
+      .axis--major .tick text, .legend text, .tooltip text {
+        fill: #585858;
+        font-family: sans-serif;
+        font-size: 16pt;
+      }
+      .axis--minor .tick text {
+        fill: #AAA;
+        font-family: sans-serif;
+        font-size: 10pt;
+      }
+      .axis--major .tick line{
+        stroke: #ddd;
+        stroke-width: 2px;
+      }
+      .axis--minor .tick line{
+        stroke: #eee;
+      }
+      .axis .domain {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="1900" height="5000"></svg>
+    <script>
+      
+      var parseDate = d3.timeParse('%Y');
+      
+      d3.csv('yh11.csv', function (data) {
+        var keys = Object.keys(data[0]).filter(key => key !== 'Date');
+        data.forEach(d => {
+          keys.forEach(key => {
+            d[key] = +d[key];
+          });
+          d.Date = parseDate(d.Date);
+        });
+        render(data, keys);
+      });
+
+      var margin = { top: 20, bottom: 20, left: 0, right: 0 };
+
+      var svg = d3.select('svg');
+      var width = +svg.attr('width');
+      var height = +svg.attr('height');
+      
+      var movingPanel = svg.append('g');
+      var g = movingPanel.append('g')
+          .attr('transform', `translate(${margin.left},${margin.top})`);
+      var xAxisG = g.append('g')
+          .attr('class', 'axis');
+      var xAxisMinorG = xAxisG.append('g')
+          .attr('class', 'axis axis--minor');
+      var xAxisMajorG = xAxisG.append('g')
+          .attr('class', 'axis axis--major');
+      var marksG = g.append('g')
+          .attr('transform', `translate(${width}) rotate(90)`);
+      
+      var stack = d3.stack()
+        .offset(d3.stackOffsetWiggle)
+        .order(d3.stackOrderInsideOut)
+      ;
+      var xValue = function (d) { return d.Date; };
+      var xScale = d3.scaleTime();
+      var yScale = d3.scaleLinear();
+      var colorScale = d3.scaleOrdinal()
+        .range(d3.schemeCategory10);
+      
+      var xAxisMajor = d3.axisLeft().scale(xScale);
+      var xAxisMinor = d3.axisRight().scale(xScale).ticks(200);
+      
+      var area = d3.area()
+        .x(d => xScale(xValue(d.data)))
+        .y0(d => yScale(d[0]))
+        .y1(d => yScale(d[1]))
+        .curve(d3.curveBasis);
+      
+      // Render StreamGraph
+      function render(data, keys) {
+        stack.keys(keys);
+        var stacked = stack(data);
+        
+        var innerWidth = width - margin.right - margin.left;
+        var innerHeight = height - margin.top - margin.bottom;
+
+        xScale
+          .domain(d3.extent(data, xValue))
+          .range([0, innerHeight]);
+
+        yScale
+          .domain([
+            d3.min(stacked, function (series) {
+              return d3.min(series, function (d) { return d[0]; });
+            }),
+            d3.max(stacked, function (series) {
+              return d3.max(series, function (d) { return d[1]; });
+            })
+          ])
+          .range([innerWidth, 0]);
+        
+        colorScale.domain(d3.range(keys.length));
+        
+        var paths = marksG.selectAll('path').data(stacked);
+        var pathsEnter = paths
+          .enter().append('path');
+        pathsEnter.merge(paths)
+            .attr('fill', function (d) { return colorScale(d.index); })
+            .attr('stroke', function (d) { return colorScale(d.index); })
+            .attr('d', area);
+        
+        paths.select('title')
+          .merge(pathsEnter.append('title'))
+            .text(function (d) { return d.key; })
+
+        var label = d3.areaLabel(area)
+          .interpolateResolution(5000)
+          .paddingLeft(0.1)
+          .minHeight(0);
+
+        var labels = marksG.selectAll('.area-label').data(stacked)
+        var labelsEnter = labels.enter().append('g')
+            .attr('class', 'area-label');
+        labelsEnter.append('text')
+            .text(function (d) { return d.key; })
+            .call(wrap, 150)
+            .attr('transform', 'rotate(-90)');
+        labelsEnter
+          .merge(labels)
+            .attr('transform', label);
+        
+        xAxisMajor.tickSize(-innerWidth + 210)
+        xAxisMinor.tickSize(innerWidth - 170)
+        
+        xAxisMajorG
+          .attr('transform', `translate(150)`)
+          .call(xAxisMajor);
+        xAxisMinorG
+          .attr('transform', `translate(110)`)
+          .call(xAxisMinor);
+      }
+
+      // From https://bl.ocks.org/mbostock/7555321
+      function wrap(text, width) {
+        text.each(function() {
+          var text = d3.select(this),
+              words = text.text().split(/\s+/).reverse(),
+              word,
+              line = [],
+              lineNumber = 0,
+              lineHeight = 1.1, // ems
+              y = 0,
+              dy = 0,
+              tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+          while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(" "));
+              line = [word];
+              tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
