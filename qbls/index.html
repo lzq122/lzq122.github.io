@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+  <meta charset="utf-8"> <!-- also save this file as unicode-8 ! -->
+  <head>  
+    <link rel="stylesheet" type="text/css" href="1.css">
+    <script src="d3.v4.min.js"></script>
+    <script src="min.js"></script>
+<style>      
+      rect.nx2015.ny4Ztopic13, rect.nx2015.ny8Ztopic1, rect.nx2016.ny3Ztopic6, rect.nx2016.ny7Ztopic8, rect.nx2016.ny9Ztopic7, rect.nx2017.ny6Ztopic9, rect.nx2017.ny5Ztopic3, rect.nx2017.ny2Ztopic2, rect.nx2017.ny1Ztopic4, rect.nx2017.ny10Ztopic10 {
+         fill: orange;
+      }       
+    </style>
+  </head>
+  
+  <body>
+    <script>
+    // setup a chart with a json file and add the visualization to a DOM element
+    // var myChart = sequenceExplorer.chart(); // no parameter when data is embedded in <pre id="data"> tag
+    var myChart = sequenceExplorer.chart("ts.csv") // load data from a json file
+      .eventOrder(["农业情报 数据库","自然语言处理 主题分析","情报改革 连续出版物","医学情报 情报信息","计算机技术 语义分析","国外情报服务 检索系统","读者服务 文献索引","科技情报系统 分布型","文献计量 引文分析","情报检索 查全、准率","情报机构 情报工作","专利分析 专利文献","数据库 情报检索系统","情报检索 图书馆馆员","情报服务 信息产业","科技期刊 国外期刊","情报技术 计算机系统","情报科学 理论体系"]) // changing the order of the events on the y axis
+      .sequenceName("time")
+      .size([1900,768]);
+
+    d3.select("body")
+      .append("div")
+      .attr("class", "chart")
+      .call(myChart);
+      
+    </script>
+  </body>
+</html> 
