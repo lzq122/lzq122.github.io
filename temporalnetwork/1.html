@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='d3.slider.css'/>
+    <link rel='stylesheet' href='styles.css'/>
+<title>时序共词网络动态可视化</title>
+  </head>
+  <body>
+    <div id='graph1' style='width: 50%; height: 100%; float: left;'></div>
+    <div id='graph2' style='width: 50%; height: 100%; float: right;'></div>
+    <script src="d3.min.js" charset="utf-8"></script>
+    <script src="jquery.min.js"></script>
+    <script src="d3.slider.js"></script>
+    <script src="d3.js"></script>
+    <script>
+	     $(function() {
+          d3.selectAll('html, body').classed({'ndtv-fullscreen': true})
+
+          var options = {
+            dataChooser: true,
+            graphData: '2.json',
+            //animationDuration: 5000,
+            // enterExitAnimationFactor: .4,
+            //debugFrameInfo: true,
+            debugDurationControl: true,
+          }
+          graph = new ndtv_d3(options, '#graph1');
+
+          options.graphData = '1.json'
+          //options.animateOnLoad = true;
+          //options.playControls = false;
+          //options.slider = false;
+          graph2 = new ndtv_d3(options, '#graph2');
+		  })
+    </script>
+  </body>
+</html>
