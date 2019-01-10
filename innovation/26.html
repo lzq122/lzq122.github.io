@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+  <meta charset="utf-8"> <!-- also save this file as unicode-8 ! -->
+  <head>  
+    <link rel="stylesheet" type="text/css" href="1.css">
+    <script src="d3.v4.min.js"></script>
+    <script src="min.js"></script>
+
+<style>
+      rect.nx2014-2018.ny107, rect.nx2010-2014.ny461, rect.nx2010-2014.ny710,rect.nx2010-2014.ny1142 {
+         fill: red;
+      }              
+    </style>
+  </head>
+  
+  <body>
+    <script>
+    // setup a chart with a json file and add the visualization to a DOM element
+    // var myChart = sequenceExplorer.chart(); // no parameter when data is embedded in <pre id="data"> tag
+    var myChart = sequenceExplorer.chart("26.csv") // load data from a json file
+      .eventOrder(["107","254","261","461","469","581","648","710","814","867","965","1095","1142"]) // changing the order of the events on the y axis
+      .sequenceName("time")
+      .size([1366,768]);
+
+    d3.select("body")
+      .append("div")
+      .attr("class", "chart")
+      .call(myChart);
+      
+    </script>
+  </body>
+</html> 
