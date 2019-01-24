@@ -1,67 +1,1267 @@
-﻿<!DOCTYPE html>
-  <meta charset="utf-8"> <!-- also save this file as unicode-8 ! -->
-  <head>  
-    <link rel="stylesheet" type="text/css" href="1.css">
-    <script src="d3.v4.min.js"></script>
-    <script src="min.js"></script>
-<style>      
-      rect.nx2016.nyT-0 {
-         fill: red;
-      }
- path.lsx1991.lsyS-12.ltx2006.ltyT-10,
-path.lsx1991.lsyS-12.ltx2006.ltyT-2,
-path.lsx1991.lsyS-12.ltx2006.ltyT-6,
-path.lsx1991.lsyS-12.ltx2005.ltyT-0,
-path.lsx1991.lsyS-12.ltx2005.ltyT-11,
-path.lsx1991.lsyS-12.ltx2005.ltyT-5,
-path.lsx1991.lsyS-12.ltx2005.ltyT-7,
-path.lsx1991.lsyS-12.ltx2005.ltyT-9,
-path.lsx1991.lsyS-12.ltx2004.ltyT-12,
-path.lsx2001.lsyS-10.ltx2005.ltyT-0,
-path.lsx2005.lsyT-5.ltx2007.ltyS-6,
-path.lsx2004.lsyT-1.ltx2006.ltyS-9,
-path.lsx2004.lsyS-8.ltx2006.ltyT-13,
-path.lsx2006.lsyT-13.ltx2007.ltyS-6,
-path.lsx2006.lsyT-2.ltx2007.ltyS-6,
-path.lsx2006.lsyT-3.ltx2007.ltyS-6,
-path.lsx2005.lsyT-5.ltx2006.ltyS-9,
-path.lsx2005.lsyT-9.ltx2006.ltyS-9,
-path.lsx2005.lsyS-7.ltx2006.ltyT-2,
-path.lsx2006.lsyT-6.ltx2005.ltyS-1,
-path.lsx2006.lsyS-9.ltx2005.ltyT-0,
-path.lsx2005.lsyS-7.ltx2004.ltyT-1,
-path.lsx2006.lsyS-9.ltx2005.ltyT-7,
-path.lsx2004.lsyT-1.ltx2002.ltyS-2,
-path.lsx2005.lsyT-11.ltx2002.ltyS-2,
-path.lsx2005.lsyT-5.ltx2002.ltyS-2,
-path.lsx2007.lsyS-6.ltx2004.ltyT-12,
-path.lsx2005.lsyT-5.ltx2001.ltyS-10,
-path.lsx2006.lsyT-10.ltx2002.ltyS-2,
-path.lsx2006.lsyT-2.ltx2002.ltyS-2,
-path.lsx2006.lsyT-6.ltx2002.ltyS-2,
-path.lsx2006.lsyT-7.ltx2002.ltyS-2,
-path.lsx2006.lsyT-6.ltx2001.ltyS-10 {
-        stroke: skyblue;
-        stroke-opacity: .9;
-      }  
-    </style>
-  </head>
-  
-  <body>
-    <script>
-    // setup a chart with a json file and add the visualization to a DOM element
-    // var myChart = sequenceExplorer.chart(); // no parameter when data is embedded in <pre id="data"> tag
-    var myChart = sequenceExplorer.chart("2.csv") // load data from a json file
-      .eventOrder(["S-0","S-1","S-2","S-3","S-4","S-5","S-6","S-7","S-8","S-9","S-10","S-11","S-12","S-13","S-14","T-0","T-1","T-2","T-3","T-4","T-5","T-6","T-7","T-8","T-9","T-10","T-11","T-12","T-13","T-14"]) // changing the order of the events on the y axis
-      .sequenceName("time")
-      .nodePadding(0.01)
-      .size([1700,900]);
 
-    d3.select("body")
-      .append("div")
-      .attr("class", "chart")
-      .call(myChart);
-      
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wordnet Topics Correlation Path (threshold=0.6)</title>
+</head>
+<body>
+    <canvas id='canvas' width='1366' height='768'></canvas>
+    <script>
+    var ctx = document.getElementById("canvas").getContext("2d");
+    	
+// #surface5360
+	ctx.save();
+	ctx.transform(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, -94.999999);
+	
+// #g3760
+	ctx.save();
+	ctx.transform(1.072801, 0.000000, 0.000000, 1.187766, -66.311303, 61.135227);
+	
+// #surface5071813
+	ctx.save();
+	ctx.transform(1.003988, 0.000000, 0.000000, 1.004317, 0.615927, -0.060512);
+	
+// #g9136
+	
+// #surface7460755
+	ctx.save();
+	ctx.transform(1.005875, 0.000000, 0.000000, 1.018489, 3.123724, -16.406453);
+	
+// #path11869
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(0.501325, 6.000504);
+	ctx.lineTo(0.501325, 0.503905);
+	ctx.lineTo(1607.001900, 0.503905);
+	ctx.lineTo(1607.001900, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11871
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 73.081413, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(0.001328, 0.000400);
+	ctx.lineTo(0.001328, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11883
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 197.715480, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(-0.001367, 0.000400);
+	ctx.lineTo(-0.001367, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11895
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 322.349550, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(-0.004068, 0.000400);
+	ctx.lineTo(-0.004068, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11907
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 446.983610, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(0.001643, 0.000400);
+	ctx.lineTo(0.001643, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11919
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.617680, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(-0.001058, 0.000400);
+	ctx.lineTo(-0.001058, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11931
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.251770, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(-0.003802, 0.000400);
+	ctx.lineTo(-0.003802, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11943
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 820.885800, 421.409970);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgb(0, 0, 0)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.750000;
+	ctx.moveTo(0.001974, 0.000400);
+	ctx.lineTo(0.001974, 6.000504);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11955
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 3.522384;
+	ctx.moveTo(1353.747200, 359.532690);
+	ctx.bezierCurveTo(1480.127000, 359.532690, 1480.127000, 671.437410, 1606.498400, 671.437410);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11957
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 3.064475;
+	ctx.moveTo(818.252590, 615.598670);
+	ctx.bezierCurveTo(1078.497700, 615.598670, 1078.497700, 54.106408, 1338.751100, 54.106408);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11959
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.950349;
+	ctx.moveTo(15.002276, 500.522550);
+	ctx.bezierCurveTo(676.876700, 500.522550, 676.876700, 360.145290, 1338.751100, 360.145290);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11961
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.780570;
+	ctx.moveTo(1353.747200, 335.037160);
+	ctx.bezierCurveTo(1480.127000, 335.037160, 1480.127000, 667.233140, 1606.498400, 667.233140);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11963
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.567466;
+	ctx.moveTo(282.749580, 559.776730);
+	ctx.bezierCurveTo(676.876700, 559.776730, 676.876700, 416.042760, 1071.003800, 416.042760);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11965
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.523084;
+	ctx.moveTo(1353.747200, 587.880710);
+	ctx.bezierCurveTo(1212.371300, 587.880710, 1212.371300, 419.433030, 1071.003800, 419.433030);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11967
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.428684;
+	ctx.moveTo(15.002276, 481.968380);
+	ctx.bezierCurveTo(543.003050, 481.968380, 543.003050, 110.675220, 1071.003800, 110.675220);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11969
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.410016;
+	ctx.moveTo(1353.747200, 245.312520);
+	ctx.bezierCurveTo(810.750360, 245.312520, 810.750360, 556.822830, 267.753520, 556.822830);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11971
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.408959;
+	ctx.moveTo(15.002276, 493.767190);
+	ctx.bezierCurveTo(676.876700, 493.767190, 676.876700, 251.060880, 1338.751100, 251.060880);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11973
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.407198;
+	ctx.moveTo(1621.502900, 672.184270);
+	ctx.bezierCurveTo(1212.371300, 672.184270, 1212.371300, 82.621589, 803.248130, 82.621589);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11975
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.404027;
+	ctx.moveTo(1085.999900, 279.139690);
+	ctx.bezierCurveTo(810.750360, 279.139690, 810.750360, 778.566540, 535.500820, 778.566540);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11977
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.387472;
+	ctx.moveTo(15.002276, 496.964450);
+	ctx.bezierCurveTo(543.003050, 496.964450, 543.003050, 279.156470, 1071.003800, 279.156470);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11979
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.381836;
+	ctx.moveTo(1085.999900, 110.708790);
+	ctx.bezierCurveTo(810.750360, 110.708790, 810.750360, 766.650250, 535.500820, 766.650250);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11981
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.327240;
+	ctx.moveTo(818.252590, 388.660470);
+	ctx.bezierCurveTo(1078.497700, 388.660470, 1078.497700, 588.014980, 1338.751100, 588.014980);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11983
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.314911;
+	ctx.moveTo(1353.747200, 363.426460);
+	ctx.bezierCurveTo(944.624010, 363.426460, 944.624010, 781.705050, 535.500820, 781.705050);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11985
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.314558;
+	ctx.moveTo(1353.747200, 584.658280);
+	ctx.bezierCurveTo(1212.371300, 584.658280, 1212.371300, 223.049200, 1071.003800, 223.049200);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11987
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.303992;
+	ctx.moveTo(15.002276, 478.813080);
+	ctx.bezierCurveTo(409.121010, 478.813080, 409.121010, 79.474681, 803.248130, 79.474681);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11989
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.296594;
+	ctx.moveTo(1085.999900, 270.110160);
+	ctx.bezierCurveTo(676.876700, 270.110160, 676.876700, 559.961350, 267.753520, 559.961350);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11991
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.294481;
+	ctx.moveTo(1085.999900, 644.180990);
+	ctx.bezierCurveTo(944.624010, 644.180990, 944.624010, 391.513660, 803.248130, 391.513660);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11993
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.252212;
+	ctx.moveTo(1353.747200, 54.643481);
+	ctx.bezierCurveTo(1480.127000, 54.643481, 1480.127000, 660.947710, 1606.498400, 660.947710);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11995
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.219454;
+	ctx.moveTo(1085.999900, 273.122800);
+	ctx.bezierCurveTo(1212.371300, 273.122800, 1212.371300, 584.985550, 1338.751100, 584.985550);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11997
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.202194;
+	ctx.moveTo(1085.999900, 276.068300);
+	ctx.bezierCurveTo(1346.253400, 276.068300, 1346.253400, 663.918390, 1606.498400, 663.918390);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path11999
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.192332;
+	ctx.moveTo(1353.747200, 248.375510);
+	ctx.bezierCurveTo(944.624010, 248.375510, 944.624010, 775.495160, 535.500820, 775.495160);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12001
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.184230;
+	ctx.moveTo(1353.747200, 223.141510);
+	ctx.bezierCurveTo(944.624010, 223.141510, 944.624010, 772.583220, 535.500820, 772.583220);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12003
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.175777;
+	ctx.moveTo(1085.999900, 166.992280);
+	ctx.bezierCurveTo(1212.371300, 166.992280, 1212.371300, 582.048440, 1338.751100, 582.048440);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12005
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.172959;
+	ctx.moveTo(15.002276, 487.884570);
+	ctx.bezierCurveTo(543.003050, 487.884570, 543.003050, 167.000680, 1071.003800, 167.000680);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12007
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.163800;
+	ctx.moveTo(1353.747200, 138.930260);
+	ctx.bezierCurveTo(944.624010, 138.930260, 944.624010, 769.679670, 535.500820, 769.679670);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12009
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.141258;
+	ctx.moveTo(1085.999900, 641.227090);
+	ctx.bezierCurveTo(1212.371300, 641.227090, 1212.371300, 363.543950, 1338.751100, 363.543950);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12011
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.140201;
+	ctx.moveTo(15.002276, 485.014590);
+	ctx.bezierCurveTo(676.876700, 485.014590, 676.876700, 138.947040, 1338.751100, 138.947040);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12013
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.138087;
+	ctx.moveTo(15.002276, 503.912820);
+	ctx.bezierCurveTo(543.003050, 503.912820, 543.003050, 412.904250, 1071.003800, 412.904250);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12015
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.125054;
+	ctx.moveTo(818.252590, 391.622760);
+	ctx.bezierCurveTo(676.876700, 391.622760, 676.876700, 784.667340, 535.500820, 784.667340);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12017
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.122237;
+	ctx.moveTo(1353.747200, 251.253890);
+	ctx.bezierCurveTo(1212.371300, 251.253890, 1212.371300, 812.746150, 1071.003800, 812.746150);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12019
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 29.361061);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(133, 204, 235, 0.9)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 2.117657;
+	ctx.moveTo(15.002276, 490.746160);
+	ctx.bezierCurveTo(543.003050, 490.746160, 543.003050, 220.095300, 1071.003800, 220.095300);
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12021
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 72.848671, 251.526760);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.6)';
+	ctx.moveTo(-0.002180, 0.001254);
+	ctx.lineTo(15.002276, 0.001254);
+	ctx.lineTo(15.002276, 28.063280);
+	ctx.lineTo(-0.002180, 28.063280);
+	ctx.moveTo(-0.002180, 0.001254);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12033
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.019040, 93.359589);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.2)';
+	ctx.moveTo(0.001055, -0.000460);
+	ctx.lineTo(14.997120, -0.000460);
+	ctx.lineTo(14.997120, 2.886304);
+	ctx.lineTo(0.001055, 2.886304);
+	ctx.moveTo(0.001055, -0.000460);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12045
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.019040, 195.626010);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.6)';
+	ctx.moveTo(0.001055, -0.002170);
+	ctx.lineTo(14.997120, -0.002170);
+	ctx.lineTo(14.997120, 7.785378);
+	ctx.lineTo(0.001055, 7.785378);
+	ctx.moveTo(0.001055, -0.002170);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12055
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.019040, 142.802120);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.4)';
+	ctx.moveTo(0.001055, -0.002885);
+	ctx.lineTo(14.997120, -0.002885);
+	ctx.lineTo(14.997120, 8.967901);
+	ctx.lineTo(0.001055, 8.967901);
+	ctx.moveTo(0.001055, -0.002885);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12065
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.384950, 220.899080);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.7)';
+	ctx.moveTo(0.003800, -0.001380);
+	ctx.lineTo(14.999864, -0.001380);
+	ctx.lineTo(14.999864, 9.640745);
+	ctx.lineTo(0.003800, 9.640745);
+	ctx.moveTo(0.003800, -0.001380);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12075
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.384950, 80.126892);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.4)';
+	ctx.moveTo(0.003800, -0.004065);
+	ctx.lineTo(14.999864, -0.004065);
+	ctx.lineTo(14.999864, 3.235153);
+	ctx.lineTo(0.003800, 3.235153);
+	ctx.moveTo(0.003800, -0.004065);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12087
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.384950, 154.382290);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.7)';
+	ctx.moveTo(0.003800, 0.001114);
+	ctx.lineTo(14.999864, 0.001114);
+	ctx.lineTo(14.999864, 12.160766);
+	ctx.lineTo(0.003800, 12.160766);
+	ctx.moveTo(0.003800, 0.001114);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12097
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.384950, 131.156590);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.6)';
+	ctx.moveTo(0.003800, -0.000722);
+	ctx.lineTo(14.999864, -0.000722);
+	ctx.lineTo(14.999864, 5.907073);
+	ctx.lineTo(0.003800, 5.907073);
+	ctx.moveTo(0.003800, -0.000722);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12107
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.384950, 106.420450);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.9)';
+	ctx.moveTo(0.003800, 0.003066);
+	ctx.lineTo(14.999864, 0.003066);
+	ctx.lineTo(14.999864, 2.898221);
+	ctx.lineTo(0.003800, 2.898221);
+	ctx.moveTo(0.003800, 0.003066);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12117
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 446.750850, 65.641953);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.6)';
+	ctx.moveTo(-0.001826, -0.002853);
+	ctx.lineTo(15.002630, -0.002853);
+	ctx.lineTo(15.002630, 6.282571);
+	ctx.lineTo(-0.001826, 6.282571);
+	ctx.moveTo(-0.001826, -0.002853);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12129
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 197.482730, 287.805850);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.2)';
+	ctx.moveTo(0.003534, -0.002497);
+	ctx.lineTo(14.999598, -0.002497);
+	ctx.lineTo(14.999598, 6.274535);
+	ctx.lineTo(0.003534, 6.274535);
+	ctx.moveTo(0.003534, -0.002497);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12141
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 820.653080, 336.323640);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.8)';
+	ctx.moveTo(-0.001582, 0.001243);
+	ctx.lineTo(15.002875, 0.001243);
+	ctx.lineTo(15.002875, 14.342751);
+	ctx.lineTo(-0.001582, 14.342751);
+	ctx.moveTo(-0.001582, 0.001243);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12151
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 446.750850, 209.553890);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.8)';
+	ctx.moveTo(-0.001826, 0.001713);
+	ctx.lineTo(15.002630, 0.001713);
+	ctx.lineTo(15.002630, 5.934683);
+	ctx.lineTo(-0.001826, 5.934683);
+	ctx.moveTo(-0.001826, 0.001713);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12161
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.019040, 299.622990);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.9)';
+	ctx.moveTo(0.001055, -0.004074);
+	ctx.lineTo(14.997120, -0.004074);
+	ctx.lineTo(14.997120, 8.966711);
+	ctx.lineTo(0.001055, 8.966711);
+	ctx.moveTo(0.001055, -0.004074);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12171
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 446.750850, 314.961610);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.9)';
+	ctx.moveTo(-0.001826, -0.001445);
+	ctx.lineTo(15.002630, -0.001445);
+	ctx.lineTo(15.002630, 4.085340);
+	ctx.lineTo(-0.001826, 4.085340);
+	ctx.moveTo(-0.001826, -0.001445);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12181
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.019040, 53.595692);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.9)';
+	ctx.moveTo(0.001055, -0.004172);
+	ctx.lineTo(14.997120, -0.004172);
+	ctx.lineTo(14.997120, 4.082612);
+	ctx.lineTo(0.001055, 4.082612);
+	ctx.moveTo(0.001055, -0.004172);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12193
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.019040, 184.454860);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.9)';
+	ctx.moveTo(0.001055, -0.003727);
+	ctx.lineTo(14.997120, -0.003727);
+	ctx.lineTo(14.997120, 3.705428);
+	ctx.lineTo(0.001055, 3.705428);
+	ctx.moveTo(0.001055, -0.003727);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12203
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.384950, 327.178830);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.6)';
+	ctx.moveTo(0.003800, 0.001842);
+	ctx.lineTo(14.999864, 0.001842);
+	ctx.lineTo(14.999864, 5.918029);
+	ctx.lineTo(0.003800, 5.918029);
+	ctx.moveTo(0.003800, 0.001842);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12213
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 571.384950, 407.024510);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.7)';
+	ctx.moveTo(0.003800, -0.002304);
+	ctx.lineTo(14.999864, -0.002304);
+	ctx.lineTo(14.999864, 2.825717);
+	ctx.lineTo(0.003800, 2.825717);
+	ctx.moveTo(0.003800, -0.002304);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12223
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 322.116790, 385.488100);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.6)';
+	ctx.moveTo(0.000854, 0.000389);
+	ctx.lineTo(14.996918, 0.000389);
+	ctx.lineTo(14.996918, 21.021733);
+	ctx.lineTo(0.000854, 21.021733);
+	ctx.moveTo(0.000854, 0.000389);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #path12233
+	ctx.save();
+	ctx.beginPath();
+	ctx.transform(0.465487, 0.000000, 0.000000, 0.465487, 696.019040, 132.551790);
+	ctx.lineJoin = 'miter';
+	ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+	ctx.lineCap = 'butt';
+	ctx.miterLimit = 4;
+	ctx.lineWidth = 0.193346;
+	ctx.fillStyle = 'rgba(0, 53, 87, 0.6)';
+	ctx.moveTo(0.001055, -0.002163);
+	ctx.lineTo(14.997120, -0.002163);
+	ctx.lineTo(14.997120, 2.909776);
+	ctx.lineTo(0.001055, 2.909776);
+	ctx.moveTo(0.001055, -0.002163);
+	ctx.fill();
+	ctx.stroke();
+	ctx.restore();
+	
+// #g12251
+	
+// #text13162
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-12", 82.488274, 277.086030);
+	ctx.restore();
+	
+// #text13166
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-10", 200.187390, 310.801910);
+	ctx.restore();
+	
+// #text13170
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-2", 317.886540, 418.692780);
+	ctx.restore();
+	
+// #text13174
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-8", 438.037720, 338.387630);
+	ctx.restore();
+	
+// #text13178
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-1", 437.424680, 228.044710);
+	ctx.restore();
+	
+// #text13182
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-12", 431.294530, 76.016693);
+	ctx.restore();
+	
+// #text13186
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-11", 553.284790, 91.955116);
+	ctx.restore();
+	
+// #text13190
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-9", 553.897770, 119.540850);
+	ctx.restore();
+	
+// #text13194
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-7", 555.123780, 146.513570);
+	ctx.restore();
+	
+// #text13198
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-5", 556.349850, 173.486270);
+	ctx.restore();
+	
+// #text13202
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-0", 552.058720, 240.305050);
+	ctx.restore();
+	
+// #text13206
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-7", 553.897770, 353.100040);
+	ctx.restore();
+	
+// #text13210
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-1", 558.188900, 435.857240);
+	ctx.restore();
+	
+// #text13214
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-9", 670.370850, 323.675260);
+	ctx.restore();
+	
+// #text13218
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-2", 671.596860, 217.010420);
+	ctx.restore();
+	
+// #text13222
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-3", 669.757810, 199.232960);
+	ctx.restore();
+	
+// #text13226
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-6", 669.757870, 160.612930);
+	ctx.restore();
+	
+// #text13230
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-7", 669.144840, 140.383390);
+	ctx.restore();
+	
+// #text13234
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-10", 669.757810, 103.602420);
+	ctx.restore();
+	
+// #text13238
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("T-13", 668.531800, 61.917320);
+	ctx.restore();
+	
+// #text13242
+	ctx.save();
+	ctx.transform(1.058968, 0.000000, 0.000000, 0.944315, 0.000000, 0.000000);
+	ctx.lineWidth = 0.490284;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.68909454px Helvetica";
+	ctx.fillText("S-6", 743.932800, 364.747340);
+	ctx.restore();
+	ctx.restore();
+	
+// #text13047
+	ctx.save();
+	ctx.transform(1.052391, 0.000000, 0.000000, 0.950218, 0.000000, 0.000000);
+	ctx.lineWidth = 0.496247;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.87990952px Helvetica";
+	ctx.fillText("1991", 62.562443, 457.522460);
+	ctx.restore();
+	
+// #text13051
+	ctx.save();
+	ctx.transform(1.052391, 0.000000, 0.000000, 0.950218, 0.000000, 0.000000);
+	ctx.lineWidth = 0.496247;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.87990952px Helvetica";
+	ctx.fillText("2001", 175.187230, 458.018220);
+	ctx.restore();
+	
+// #text13055
+	ctx.save();
+	ctx.transform(1.052391, 0.000000, 0.000000, 0.950218, 0.000000, 0.000000);
+	ctx.lineWidth = 0.496247;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.87990952px Helvetica";
+	ctx.fillText("2002", 293.697360, 458.018220);
+	ctx.restore();
+	
+// #text13059
+	ctx.save();
+	ctx.transform(1.052391, 0.000000, 0.000000, 0.950218, 0.000000, 0.000000);
+	ctx.lineWidth = 0.496247;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.87990952px Helvetica";
+	ctx.fillText("2004", 410.966550, 456.156800);
+	ctx.restore();
+	
+// #text13063
+	ctx.save();
+	ctx.transform(1.052391, 0.000000, 0.000000, 0.950218, 0.000000, 0.000000);
+	ctx.lineWidth = 0.496247;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.87990952px Helvetica";
+	ctx.fillText("2005", 531.958560, 454.295380);
+	ctx.restore();
+	
+// #text13067
+	ctx.save();
+	ctx.transform(1.052391, 0.000000, 0.000000, 0.950218, 0.000000, 0.000000);
+	ctx.lineWidth = 0.496247;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.87990952px Helvetica";
+	ctx.fillText("2006", 651.709660, 456.156800);
+	ctx.restore();
+	
+// #text13071
+	ctx.save();
+	ctx.transform(1.052391, 0.000000, 0.000000, 0.950218, 0.000000, 0.000000);
+	ctx.lineWidth = 0.496247;
+	ctx.fillStyle = 'rgb(0, 0, 0)';
+	ctx.font = "normal normal 15.87990952px Helvetica";
+	ctx.fillText("2007", 759.671810, 456.777250);
+	ctx.restore();
+	ctx.restore();
+	ctx.restore();
+	
+// #g2387
+	ctx.restore();
+
     </script>
-  </body>
-</html> 
+</body>
+</html>
