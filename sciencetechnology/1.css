@@ -55,17 +55,17 @@
   }
 
   g.tick path {
-    stroke: grey;
+    stroke: orange;
     stroke-width: 3px;
   }
   
   .sankeyNode {
     fill: #023858; 
-    fill-opacity: .75;  
+    fill-opacity: 1;  
     shape-rendering: crispEdges;
     stroke: #000;
     stroke-width: 0px;
-    stroke-opacity: .5;
+    stroke-opacity: 1;
   } 
     
   rect.sankeyNodeInfo {
@@ -83,11 +83,11 @@
 
   .link {
     fill: none;
-    stroke: #023858;
-    stroke: #000;  
-    stroke-opacity: .2;
+    stroke: #ff73b3;
+    stroke: red;  
+    stroke-opacity: .6;
     /* change stroke-opacity for subtle background + highlighting individual path 
-    stroke-opacity: .06; 
+    stroke-opacity: .9; 
     */
   }
 
