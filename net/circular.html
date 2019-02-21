@@ -3,7 +3,7 @@
    <head>
        <meta charset="utf-8">
    </head>
-   <body style="height: 100%; margin: 0">
+      <body style="height: 100%; margin: 0">
        <div id="container" style="height: 100%"></div>
 <script type="text/javascript" src="jquery.min.js"></script>
        <script type="text/javascript" src="echarts.min.js"></script>
@@ -41,7 +41,7 @@ $.get('net.gexf', function (xml) {
     });
     option = {
         title: {
-            text: 'Network Visual&Liu Ziqiang；Xu Haiyun',
+            text: 'circular&Liu Ziqiang；Xu Haiyun',
             subtext: '',
             top: 'bottom',
             left: 'right'
@@ -53,37 +53,30 @@ $.get('net.gexf', function (xml) {
                 return a.name;
             })
         }],
-        animationDuration: 1500,
+        animationDurationUpdate: 1500,
         animationEasingUpdate: 'quinticInOut',
         series : [
             {
-                name: 'Id',
+                name: 'node',
                 type: 'graph',
-                layout: 'none',
+                layout: 'circular',
+                circular: {
+                    rotateLabel: true
+                },
                 data: graph.nodes,
                 links: graph.links,
                 categories: categories,
                 roam: true,
-                focusNodeAdjacency: true,
-                itemStyle: {
+                label: {
                     normal: {
-                        borderColor: '#fff',
-                        borderWidth: 1,
-                        shadowBlur: 10,
-                        shadowColor: 'rgba(0, 0, 0, 0.3)'
+                        position: 'right',
+                        formatter: '{b}'
                     }
                 },
-                label: {
-                    position: 'right',
-                    formatter: '{b}'
-                },
                 lineStyle: {
-                    color: 'source',
-                    curveness: 0.3
-                },
-                emphasis: {
-                    lineStyle: {
-                        width: 10
+                    normal: {
+                        color: 'source',
+                        curveness: 0.3
                     }
                 }
             }
