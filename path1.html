@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科学文献引用网络时序路径可视化分析系统</title>
+    <script src="https://cdn.staticfile.org/echarts/5.4.0/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2ecc71;
+            --secondary-dark: #27ae60;
+            --accent: #9b59b6;
+            --accent-dark: #8e44ad;
+            --warning: #f39c12;
+            --warning-dark: #d35400;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-light: #777777;
+            --border: #e0e0e0;
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .panel:hover {
+            transform: translateY(-5px);
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        .control-group h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn i {
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-dark);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-dark);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+        }
+
+        .btn-warning:hover {
+            background: var(--warning-dark);
+        }
+
+        .file-input {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .file-input input[type="file"] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input label {
+            display: block;
+            padding: 12px 15px;
+            background: #f0f7ff;
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .file-input label:hover {
+            background: #e1f0ff;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input[type="number"]:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .path-selectors {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .path-selectors select {
+            flex: 1;
+        }
+
+        .analysis-options {
+            background: #f9f9ff;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .analysis-options h4 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #main {
+            width: 100%;
+            height: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .results-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .results-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: #f0f4f8;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .result-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .result-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .color-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-table th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+        }
+
+        .result-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .result-table tr:hover {
+            background-color: #e8f4ff;
+        }
+
+        .loading {
+            padding: 15px;
+            background: #fff9e6;
+            border-radius: 8px;
+            border: 1px solid #ffecb3;
+            text-align: center;
+            color: var(--warning-dark);
+            font-weight: 500;
+            margin: 15px 0;
+        }
+
+        .visual-path {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 8px 0;
+        }
+
+        .path-node {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .path-arrow {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--primary);
+        }
+
+        .stat-card h3 {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .path-selectors {
+                flex-direction: column;
+            }
+            
+            .option-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-project-diagram"></i> 科学文献引用网络时序路径可视化分析系统</h1>
+            <p>通过可视化工具分析文献引用网络中的时序路径，识别关键文献与传播路径</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3><i class="fas fa-book"></i> 文献数量</h3>
+                <div class="value" id="doc-count">0</div>
+            </div>
+            <div class="stat-card">
+                <h3><i class="fas fa-link"></i> 引用关系</h3>
+                <div class="value" id="citation-count">0</div>
+            </div>
+            <div class="stat-card">
+                <h3><i class="fas fa-history"></i> 时间跨度</h3>
+                <div class="value" id="year-span">0 年</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-sliders-h"></i> 控制面板
+                </div>
+                
+                <div class="control-group">
+                    <h3><i class="fas fa-database"></i> 数据管理</h3>
+                    <button class="btn" onclick="loadSampleData()">
+                        <i class="fas fa-file-download"></i> 加载示例数据
+                    </button>
+                    
+                    <div class="file-input">
+                        <input type="file" id="nodeFile" accept=".csv">
+                        <label for="nodeFile"><i class="fas fa-file-csv"></i> 选择节点文件</label>
+                    </div>
+                    
+                    <div class="file-input">
+                        <input type="file" id="linkFile" accept=".csv">
+                        <label for="linkFile"><i class="fas fa-file-csv"></i> 选择关系文件</label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3><i class="fas fa-route"></i> 路径分析</h3>
+                    <div class="path-selectors">
+                        <select id="startNode"></select>
+                        <span>→</span>
+                        <select id="endNode"></select>
+                    </div>
+                    <button class="btn" onclick="analyzePaths()">
+                        <i class="fas fa-search"></i> 分析指定路径
+                    </button>
+                    <button class="btn btn-secondary" onclick="analyzeGlobalPaths()">
+                        <i class="fas fa-globe-americas"></i> 全局路径分析
+                    </button>
+                </div>
+                
+                <div class="control-group">
+                    <h3><i class="fas fa-chart-line"></i> 主路径分析</h3>
+                    <div class="analysis-options">
+                        <h4><i class="fas fa-cog"></i> 分析参数</h4>
+                        <div class="option-row">
+                            <label for="pathThreshold">路径阈值:</label>
+                            <input type="number" id="pathThreshold" value="3" min="1">
+                        </div>
+                    </div>
+                    <button class="btn btn-accent" onclick="performMainPathAnalysis()">
+                        <i class="fas fa-play-circle"></i> 执行主路径分析
+                    </button>
+                </div>
+                
+                
+            </div>
+            
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-chart-network"></i> 可视化视图
+                </div>
+                <div id="main"></div>
+            </div>
+        </div>
+        
+        <div class="results-container">
+            <div class="results-tabs">
+                <button class="tab-btn active" onclick="showTab('specific')">指定路径分析</button>
+                <button class="tab-btn" onclick="showTab('global')">全局分析结果</button>
+                <button class="tab-btn" onclick="showTab('main')">主路径分析</button>
+            </div>
+            
+            <div id="specific-tab" class="tab-content">
+                <div class="result-section">
+                    <h4><i class="fas fa-route"></i> 指定路径分析结果</h4>
+                    <div class="color-legend" id="colorLegend"></div>
+                    
+                    <div class="result-section">
+                        <h5><i class="fas fa-long-arrow-alt-right"></i> 最长路径</h5>
+                        <table class="result-table" id="longestPaths">
+                            <tr>
+                                <th>路径长度</th>
+                                <th>总被引次数</th>
+                                <th>文献序列</th>
+                                <th>时间跨度</th>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h5><i class="fas fa-star"></i> 高被引路径</h5>
+                        <table class="result-table" id="topCitedPaths">
+                            <tr>
+                                <th>总被引次数</th>
+                                <th>路径长度</th>
+                                <th>出度中心性均值</th>
+                                <th>关键文献</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="global-tab" class="tab-content" style="display:none;">
+                <div class="result-section">
+                    <h4><i class="fas fa-globe-americas"></i> 全局分析结果</h4>
+                    <div id="globalLoading" class="loading" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i> 计算中，请稍候...
+                    </div>
+                    
+                    <div class="result-section">
+                        <h5><i class="fas fa-long-arrow-alt-right"></i> 最长路径</h5>
+                        <table class="result-table" id="globalLongestPaths">
+                            <tr>
+                                <th>排名</th>
+                                <th>路径长度</th>
+                                <th>总被引次数</th>
+                                <th>文献序列</th>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h5><i class="fas fa-star"></i> 高被引路径</h5>
+                        <table class="result-table" id="globalTopCitedPaths">
+                            <tr>
+                                <th>排名</th>
+                                <th>总被引次数</th>
+                                <th>路径长度</th>
+                                <th>关键文献</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="main-tab" class="tab-content" style="display:none;">
+                <div class="result-section">
+                    <h4><i class="fas fa-chart-line"></i> 主路径分析结果</h4>
+                    <div id="mainPathLoading" class="loading" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i> 计算中...
+                    </div>
+                    <table class="result-table" id="mainPaths">
+                        <tr>
+                            <th>传播强度</th>
+                            <th>主路径文献序列</th>
+                            <th>可视化</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>科学文献引用网络时序路径可视化分析系统 &copy; 2023 | 基于ECharts构建</p>
+        </div>
+    </div>
+
+    <script>
+        // 初始化变量
+        let documents = [], citations = [];
+        let currentPaths = [], pathColors = [];
+        let networkMetrics = { centrality: {} };
+        const chartDom = document.getElementById('main');
+        const myChart = echarts.init(chartDom);
+
+        // 更新统计数据
+        function updateStats() {
+            document.getElementById('doc-count').textContent = documents.length;
+            document.getElementById('citation-count').textContent = citations.length;
+            
+            if (documents.length > 0) {
+                const years = documents.map(d => d.year);
+                const minYear = Math.min(...years);
+                const maxYear = Math.max(...years);
+                document.getElementById('year-span').textContent = `${maxYear - minYear} 年`;
+            }
+        }
+
+        // 加载示例数据
+        function loadSampleData() {
+            const nodeCSV = `id,title,year,citations
+D1,深度学习基础理论,2020,500
+D2,神经网络优化方法,2021,400
+D3,自然语言处理应用,2022,23
+D4,计算机视觉研究,2023,10
+D5,多模态学习系统,2024,5
+D6,图神经网络模型,2020,450`;
+
+            const linkCSV = `source,target
+D1,D2
+D2,D3
+D3,D4
+D4,D5
+D1,D6
+D2,D5
+D6,D5`;
+
+            documents = nodeCSV.split('\n').slice(1).map(row => {
+                const [id, title, year, citations] = row.split(',');
+                return {
+                    id: id.trim(),
+                    title: title.trim(),
+                    year: parseInt(year.trim()),
+                    citations: parseInt(citations.trim())
+                };
+            });
+
+            citations = linkCSV.split('\n').slice(1).map(row => {
+                const [source, target] = row.split(',');
+                return {
+                    source: source.trim(),
+                    target: target.trim()
+                };
+            });
+
+            initSelects();
+            calculateNetworkMetrics();
+            renderChart();
+            updateStats();
+            
+            // 显示成功提示
+            showNotification('示例数据加载完成！', 'success');
+        }
+
+        // 显示通知
+        function showNotification(message, type) {
+            // 这里可以添加更美观的通知系统
+            alert(`${type === 'success' ? '✓' : '⚠'} ${message}`);
+        }
+
+        // 解析CSV文件
+        function parseCSV(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const rows = e.target.result.split('\n').filter(row => row.trim());
+                const headers = rows[0].split(',').map(h => h.trim());
+                const data = rows.slice(1).map(row => {
+                    const values = row.split(',').map(v => v.trim());
+                    return headers.reduce((obj, h, i) => {
+                        obj[h] = isNaN(values[i]) ? values[i] : Number(values[i]);
+                        return obj;
+                    }, {});
+                });
+                callback(data);
+            };
+            reader.readAsText(file);
+        }
+
+        // 初始化下拉选择
+        function initSelects() {
+            const startSelect = document.getElementById('startNode');
+            const endSelect = document.getElementById('endNode');
+            startSelect.innerHTML = documents.map(d => 
+                `<option value="${d.id}">${d.title}</option>`).join('');
+            endSelect.innerHTML = documents.map(d => 
+                `<option value="${d.id}">${d.title}</option>`).join('');
+        }
+
+        // 计算节点位置
+        function calculatePositions() {
+            documents.sort((a, b) => a.year - b.year);
+              
+            const yearMeta = documents.reduce((acc, d) => {
+                if (!acc[d.year]) {
+                    acc[d.year] = {
+                        count: 0,
+                        baseX: 0 
+                    };
+                }
+                acc[d.year].count++;
+                return acc;
+            }, {});
+
+            const canvas = {
+                width: 1200,
+                height: 600,
+                margin: { top: 10, bottom: 10, left: 100, right: 100 },
+                yearSpacing: 180
+            };
+
+            const years = Object.keys(yearMeta).sort((a,b) => a - b);
+            years.forEach((year, idx) => {
+                yearMeta[year].baseX = canvas.margin.left + idx * canvas.yearSpacing;
+            });
+
+            return documents.map(d => {
+                const meta = yearMeta[d.year];
+                const nodesInYear = documents.filter(n => n.year === d.year);
+                const index = nodesInYear.indexOf(d);
+                
+                const verticalSpace = canvas.height - canvas.margin.top - canvas.margin.bottom;
+                const yStep = verticalSpace / (meta.count + 1);
+                
+                return {
+                    ...d,
+                    x: meta.baseX, 
+                    y: canvas.margin.top + yStep * (index + 1), 
+                    fixed: true
+                };
+            });
+        }
+
+        // 创建时间轴
+        function createFixedTimeAxis() {
+            const years = [...new Set(documents.map(d => d.year))].sort();
+            const minYear = Math.min(...years);
+            const maxYear = Math.max(...years);
+            const yearSpan = maxYear - minYear || 1;
+
+            return years.map(year => {
+                const xPos = ((year - minYear) / yearSpan) * (chartDom.offsetWidth - 200) + 100;
+                return [
+                    {
+                        type: 'line',
+                        z: 0,
+                        shape: { x1: xPos, y1: 0, x2: xPos, y2: chartDom.offsetHeight },
+                        style: { 
+                            stroke: '#999', 
+                            lineDash: [5,5],
+                            lineWidth: 1
+                        }
+                    },
+                    {
+                        type: 'text',
+                        bottom: 0,
+                        left: xPos -15,
+                        style: {
+                            text: year,
+                            fill: '#666',
+                            fontSize: 20
+                        }
+                    }
+                ];
+            }).flat();
+        }
+
+        // 导出图表
+        function exportDiagram(type) {
+            const pixelRatio = type === 'png' ? 4 : 1;
+            const extension = type.toUpperCase();
+            
+            const tempDom = document.createElement('div');
+            tempDom.style.width = '2400px';
+            tempDom.style.height = '2400px';
+            tempDom.style.position = 'fixed';
+            tempDom.style.left = '-9999px';
+            document.body.appendChild(tempDom);
+
+            const tempChart = echarts.init(tempDom, null, {
+                renderer: type === 'svg' ? 'svg' : 'canvas',
+                devicePixelRatio: pixelRatio
+            });
+            tempChart.setOption(myChart.getOption());
+
+            setTimeout(() => {
+                const dataURL = tempChart.getDataURL({
+                    type,
+                    backgroundColor: '#ffffff',
+                    pixelRatio: type === 'png' ? 4 : 1
+                });
+
+                const link = document.createElement('a');
+                link.download = `CitationNetwork.${type}`;
+                link.href = dataURL;
+                link.click();
+
+                tempChart.dispose();
+                document.body.removeChild(tempDom);
+                
+                showNotification(`图表已导出为${extension}格式`, 'success');
+            }, 500);
+        }
+
+        // 计算网络指标
+        function calculateNetworkMetrics() {
+            networkMetrics.centrality = documents.reduce((acc, node) => {
+                acc[node.id] = {
+                    inDegree: citations.filter(l => l.target === node.id).length,
+                    outDegree: citations.filter(l => l.source === node.id).length
+                };
+                return acc;
+            }, {});
+
+            documents.forEach(node => {
+                node.totalCitationImpact = (networkMetrics.centrality[node.id].inDegree + networkMetrics.centrality[node.id].outDegree)*node.citations;
+            });
+            
+            updateStats();
+        }
+
+        // 过滤最长唯一路径
+        function filterLongestUniquePaths(paths) {
+            const pathMap = new Map();
+            
+            paths.forEach(p => {
+                const key = `${p.path[0]}-${p.path[p.path.length-1]}`;
+                const existing = pathMap.get(key);
+                
+                if (!existing || p.length > existing.length) {
+                    pathMap.set(key, p);
+                }
+            });
+            
+            return Array.from(pathMap.values());
+        }
+
+        // 全局路径分析
+        async function analyzeGlobalPaths() {
+            const startTime = Date.now();
+            const loadingElement = document.getElementById('globalLoading');
+            loadingElement.style.display = 'block';
+            
+            try {
+                const allPaths = [];
+                const nodeIds = documents.map(d => d.id);
+                
+                for (const startId of nodeIds) {
+                    for (const endId of nodeIds) {
+                        if (startId === endId) continue;
+                        const paths = findPaths(startId, endId);
+                        allPaths.push(...paths);
+                    }
+                }
+
+                const enhancedPaths = allPaths.map(path => {
+                    const nodes = path.map(id => documents.find(d => d.id === id));
+                    return {
+                        path: path,
+                        length: path.length,
+                        totalCitations: nodes.reduce((sum, n) => sum + n.citations, 0),
+                        avgCentrality: parseFloat((path.reduce((sum, id) => 
+                            sum + networkMetrics.centrality[id].outDegree, 0) / path.length).toFixed(2)),
+                        yearsSpan: Math.max(...nodes.map(n => n.year)) - Math.min(...nodes.map(n => n.year))
+                    };
+                });
+
+                const filteredPaths = filterLongestUniquePaths(enhancedPaths);
+                const longestPaths = filteredPaths.sort((a, b) => b.length - a.length).slice(0, 10);
+                const topCitedPaths = filteredPaths.sort((a, b) => b.totalCitations - a.totalCitations).slice(0, 10);
+
+                renderGlobalResultTables(longestPaths, topCitedPaths);
+                
+                showNotification(`全局分析完成，耗时：${(Date.now()-startTime)/1000}秒`, 'success');
+            } catch (error) {
+                console.error('全局路径分析出错:', error);
+                showNotification('全局路径分析出错，请检查数据', 'error');
+            } finally {
+                loadingElement.style.display = 'none';
+            }
+        }
+
+        // 生成路径颜色
+        function generatePathColors(pathCount) {
+            return Array.from({length: pathCount}, (_, i) => 
+                `hsl(${(i * 360) / pathCount}, 70%, 50%)`
+            );
+        }
+
+        // 执行主路径分析
+        async function performMainPathAnalysis() {
+            const loading = document.getElementById('mainPathLoading');
+            loading.style.display = 'block';
+            
+            try { 
+                const allPaths = [];
+                const nodeIds = documents.map(d => d.id);
+                for (const startId of nodeIds) {
+                    for (const endId of nodeIds) {
+                        if (startId === endId) continue;
+                        allPaths.push(...findPaths(startId, endId));
+                    }
+                }
+            
+                const edgeWeights = new Map();
+                allPaths.forEach(path => {
+                    for (let i = 0; i < path.length - 1; i++) {
+                        const edgeKey = `${path[i]}-${path[i+1]}`;
+                        edgeWeights.set(edgeKey, (edgeWeights.get(edgeKey) || 0) + 1);
+                    }
+                });
+
+                const threshold = parseInt(document.getElementById('pathThreshold').value);
+                const criticalEdges = Array.from(edgeWeights.entries())
+                    .filter(([_, count]) => count >= threshold)
+                    .sort((a, b) => b[1] - a[1]);
+
+                const mainPaths = [];
+                criticalEdges.forEach(([edgeKey, edgeWeight]) => { 
+                    const [source, target] = edgeKey.split('-');
+                    
+                    const matchingPaths = mainPaths.filter(p => 
+                        p.path[p.path.length-1] === source && !p.path.includes(target)
+                    );
+
+                    if (matchingPaths.length > 0) {
+                        matchingPaths.forEach(existing => {
+                            mainPaths.push({
+                                path: [...existing.path, target],
+                                strength: existing.strength * edgeWeight 
+                            });
+                        });
+                    } else {
+                        mainPaths.push({
+                            path: [source, target],
+                            strength: edgeWeight
+                        });
+                    }
+                });
+
+                const validPaths = mainPaths
+                    .filter(p => p.path.length >= 2)
+                    .reduce((acc, p) => {
+                        const key = p.path.join('-');
+                        if (!acc.has(key) || acc.get(key).strength < p.strength) {
+                            acc.set(key, p);
+                        }
+                        return acc;
+                    }, new Map());
+
+                const formattedPaths = Array.from(validPaths.values())
+                    .map((p, index) => ({
+                        path: p.path,
+                        length: p.path.length,
+                        strength: p.strength,
+                        papers: p.path.map(id => 
+                            documents.find(d => d.id === id)?.title),
+                        color: `hsl(${(index * 360)/validPaths.size},70%,50%)`
+                    }))
+                    .sort((a, b) => b.strength - a.strength);
+
+                window.mainPaths = formattedPaths;
+                renderMainPaths(formattedPaths);
+                renderChart();
+                
+                showNotification(`主路径分析完成，发现${formattedPaths.length}条主路径`, 'success');
+            } catch (error) {
+                console.error('主路径分析失败:', error);
+                showNotification('主路径分析失败，请检查参数设置', 'error');
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // 渲染主路径
+        function renderMainPaths(paths) {
+            const table = document.getElementById('mainPaths');
+            
+            table.innerHTML = `
+                <tr>
+                    <th>传播强度</th>
+                    <th>主路径文献序列</th>
+                    <th>可视化</th>
+                </tr>
+                ${paths.map(p => `
+                    <tr>
+                        <td>${p.strength > 1000 ? 
+                            `${(p.strength/1000).toFixed(1)}×10³` : 
+                            p.strength.toFixed(2)}
+                        </td>
+                        <td>${p.papers.join(' → ')}</td>
+                        <td>${visualizePath(p.path, p.color)}</td>
+                    </tr>
+                `).join('')}
+            `;
+        }
+
+        // 可视化路径
+        function visualizePath(path, color) {
+            return `
+                <div class="visual-path">
+                    ${path.map((id, i) => {
+                        const node = documents.find(d => d.id === id);
+                        return `
+                            <div class="path-node" style="background: ${color}; color: white;">
+                                ${node.title}
+                            </div>
+                            ${i < path.length - 1 ? `<div class="path-arrow">→</div>` : ''}
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        // 渲染全局结果表
+        function renderGlobalResultTables(longestPaths, topCitedPaths) {
+            const globalLongestTable = document.getElementById('globalLongestPaths');
+            globalLongestTable.innerHTML = `
+                <tr>
+                    <th>排名</th>
+                    <th>路径长度</th>
+                    <th>总被引次数</th>
+                    <th>文献序列</th>
+                </tr>
+            ` + longestPaths.map((p,i) => `
+                <tr>
+                    <td>${i+1}</td>
+                    <td>${p.length}</td>
+                    <td>${p.totalCitations}</td>
+                    <td>${p.path.join(' → ')}</td>
+                </tr>
+            `).join('');
+
+            const globalTopCitedTable = document.getElementById('globalTopCitedPaths');
+            globalTopCitedTable.innerHTML = `
+                <tr>
+                    <th>排名</th>
+                    <th>总被引次数</th>
+                    <th>路径长度</th>
+                    <th>关键文献</th>
+                </tr>
+            ` + topCitedPaths.map((p,i) => `
+                <tr>
+                    <td>${i+1}</td>
+                    <td>${p.totalCitations}</td>
+                    <td>${p.length}</td>
+                    <td>${getKeyPapers(p.path)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // 查找路径
+        function findPaths(start, end, maxDepth = 8) {
+            const adjacencyList = citations.reduce((acc, {source, target}) => {
+                acc[source] = acc[source] || [];
+                acc[source].push(target);
+                return acc;
+            }, {});
+
+            const paths = [];
+            (function dfs(current, path, depth) {
+                if (depth > maxDepth) return;
+                path.push(current);
+                if (current === end) {
+                    paths.push([...path]);
+                    path.pop();
+                    return;
+                }
+                adjacencyList[current]?.forEach(next => {
+                    if (!path.includes(next)) dfs(next, path, depth + 1);
+                });
+                path.pop();
+            })(start, [], 1);
+            return paths;
+        }
+
+        // 高亮路径
+        function highlightPaths(paths) {
+            pathColors = paths.map((_,i) => `hsl(${(i*360)/paths.length},70%,50%)`);
+            
+            const linkMap = new Map();
+            paths.forEach((path, pathIndex) => {
+                path.path.slice(0,-1).forEach((source, i) => {
+                    const target = path.path[i+1];
+                    const sourceName = documents.find(d => d.id === source)?.title || source;
+                    const targetName = documents.find(d => d.id === target)?.title || target;
+                    linkMap.set(`${source}-${target}`, {
+                        color: pathColors[pathIndex],
+                        curveness: 0.2,
+                        sourceName,
+                        targetName
+                    });
+                });
+            });
+
+            const option = myChart.getOption();
+            option.series[0].links = citations.map(link => {
+                const enhancedLink = linkMap.get(`${link.source}-${link.target}`);
+                return {
+                    ...link,
+                    sourceName: enhancedLink?.sourceName || link.sourceName,
+                    targetName: enhancedLink?.targetName || link.targetName,
+                    lineStyle: {
+                        color: enhancedLink?.color || '#ddd',
+                        width: enhancedLink ? 3 : 1,
+                        curveness: enhancedLink?.curveness || 0.2
+                    }
+                };
+            });
+            myChart.setOption(option, true);
+            
+            document.getElementById('colorLegend').innerHTML = paths.map((p,i) => `
+                <div class="legend-item">
+                    <div class="color-dot" style="background:${pathColors[i]}"></div>
+                    <span>路径${i+1}: ${p.path.length}个节点</span>
+                </div>
+            `).slice(0,5).join('');
+        }
+
+        // 渲染结果表
+        function renderResultTables(paths) {
+            const longestTable = document.getElementById('longestPaths');
+            longestTable.innerHTML = `
+                <tr>
+                    <th>路径长度</th>
+                    <th>总被引次数</th>
+                    <th>文献序列</th>
+                    <th>时间跨度</th>
+                </tr>
+            ` + paths.slice(0,5).map(p => `
+                <tr>
+                    <td>${p.length}</td>
+                    <td>${p.totalCitations}</td>
+                    <td>${p.path.join(' → ')}</td>
+                    <td>${p.yearsSpan}年</td>
+                </tr>
+            `).join('');
+
+            const citedPaths = [...paths].sort((a,b) => b.totalCitations - a.totalCitations);
+            const topCitedTable = document.getElementById('topCitedPaths');
+            topCitedTable.innerHTML = `
+                <tr>
+                    <th>总被引次数</th>
+                    <th>路径长度</th>
+                    <th>出度中心性均值</th>
+                    <th>关键文献</th>
+                </tr>
+            ` + citedPaths.slice(0,5).map(p => `
+                <tr>
+                    <td>${p.totalCitations}</td>
+                    <td>${p.length}</td>
+                    <td>${p.avgCentrality}</td>
+                    <td>${getKeyPapers(p.path)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // 获取关键文献
+        function getKeyPapers(path) {
+            return path.map(id => {
+                const node = documents.find(d => d.id === id);
+                return node.totalCitationImpact > 95 ? `${node.title}*` : node.title;
+            }).join(' → ');
+        }
+
+        // 提示框格式化
+        function tooltipFormatter(params) {
+            if (params.dataType === 'node') {
+                const data = params.data;
+                return `
+                    <strong>${data.name}</strong><br>
+                    年份：${data.year}<br>
+                    被引次数：${data.value}<br>
+                    入度：${networkMetrics.centrality[data.id].inDegree}<br>
+                    出度：${networkMetrics.centrality[data.id].outDegree}
+                `;
+            }
+            if (params.dataType === 'edge') {
+                return `来源：${params.data.sourceName}<br>目标：${params.data.targetName}`;
+            }
+            return '';
+        }
+
+        // 分析路径
+        function analyzePaths() {
+            const start = document.getElementById('startNode').value;
+            const end = document.getElementById('endNode').value;
+            const rawPaths = findPaths(start, end);
+            
+            const enhancedPaths = rawPaths.map(path => {
+                const nodes = path.map(id => documents.find(d => d.id === id));
+                return {
+                    path: path,
+                    length: path.length,
+                    totalCitations: nodes.reduce((sum, n) => sum + n.citations, 0),
+                    avgCentrality: parseFloat((path.reduce((sum, id) => 
+                        sum + (networkMetrics.centrality[id].inDegree+networkMetrics.centrality[id].outDegree), 0) / path.length).toFixed(2)),
+                    yearsSpan: Math.max(...nodes.map(n => n.year)) - Math.min(...nodes.map(n => n.year))
+                };
+            }).sort((a, b) => b.length - a.length);
+
+            highlightPaths(enhancedPaths);
+            renderResultTables(enhancedPaths);
+            showNotification(`找到${enhancedPaths.length}条路径`, 'success');
+        }
+
+        // 渲染图表
+        function renderChart() {
+            const baseNodeStyle = {
+                label: {
+                    show: true,
+                    position: 'right',
+                    fontSize: 20,
+                    color: '#333',
+                    formatter: '{b}' 
+                }
+            };
+
+            const minCitation = 1;
+            const maxCitation = 700;
+            const minSize = 5;
+            const maxSize = 20;
+            const nodes = calculatePositions().map(d => ({
+                id: d.id,
+                name: d.title,       
+                value: d.citations, 
+                year: d.year,
+                x: d.x,
+                y: d.y,
+                ...baseNodeStyle,
+                symbolSize: ((Math.log(d.citations) - Math.log(minCitation)) / (Math.log(maxCitation) - Math.log(minCitation))) * (maxSize - minSize) + minSize,
+                itemStyle: { 
+                    color: '#5470c6',
+                    borderWidth: 1,
+                    borderColor: '#333'
+                }
+            }));
+
+            let links = citations.map(link => {
+                const sourceDoc = documents.find(d => d.id === link.source);
+                const targetDoc = documents.find(d => d.id === link.target);
+                return {
+                    ...link,
+                    sourceName: sourceDoc?.title || link.source,
+                    targetName: targetDoc?.title || link.target,
+                    lineStyle: { 
+                        color: '#ddd',
+                        width: 1,
+                        curveness: 0.2
+                    }
+                };
+            });
+
+            if (window.mainPaths?.length) {
+                const pathColors = generatePathColors(window.mainPaths.length);
+                
+                window.mainPaths.forEach((mainPath, pathIndex) => {
+                    const pathColor = pathColors[pathIndex % pathColors.length];
+                    
+                    mainPath.path.forEach(nodeId => {
+                        const node = nodes.find(n => n.id === nodeId);
+                        if (node) {
+                            node.itemStyle = {
+                                ...node.itemStyle,
+                                color: pathColor,
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            };
+                        }
+                    });
+
+                    for (let i = 0; i < mainPath.path.length - 1; i++) {
+                        const source = mainPath.path[i];
+                        const target = mainPath.path[i+1];
+                        const link = links.find(l => l.source === source && l.target === target);
+                        if (link) {
+                            link.lineStyle = {
+                                color: pathColor,
+                                width: 3,
+                                curveness: 0.3,
+                                opacity: 1
+                            };
+                        }
+                    }
+                });
+            }
+
+            const option = {
+                title: { 
+                    text: '文献引用网络时序路径分析',
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 18,
+                        fontWeight: 'bold'
+                    }
+                },
+                toolbox: { 
+                    feature: { 
+                        saveAsImage: {
+                            title: '保存为图片',
+                            pixelRatio: 2
+                        } 
+                    },
+                    right: 20
+                },
+                tooltip: {
+                    formatter: params => {
+                        if (params.dataType === 'edge') {
+                            return `来源：${params.data.sourceName}<br>目标：${params.data.targetName}`;
+                        }
+                        const data = params.data;
+                        return `
+                            <strong>${data.name}</strong><br>
+                            年份：${data.year}<br>
+                            被引次数：${data.value}<br>
+                            入度：${networkMetrics.centrality[data.id].inDegree}<br>
+                            出度：${networkMetrics.centrality[data.id].outDegree}
+                        `;
+                    }
+                },
+                graphic: createFixedTimeAxis(),
+                series: [{
+                    type: 'graph',
+                    layout: 'none',
+                    roam: true,
+                    focusNodeAdjacency: true,
+                    edgeSymbol: ['none', 'arrow'],
+                    edgeSymbolSize: 8,
+                    nodes: nodes,
+                    links: links,
+                    lineStyle: { 
+                        opacity: 0.8,
+                        color: 'source'
+                    },
+                    emphasis: {
+                        focus: 'adjacency',
+                        lineStyle: {
+                            width: 3
+                        }
+                    },
+                    label: {
+                        position: 'right',
+                        show: true,
+                        fontSize: 14
+                    },
+                    categories: documents.map(d => ({ name: d.title })),
+                    force: {
+                        repulsion: 300,
+                        edgeLength: 150
+                    }
+                }]
+            };
+            
+            myChart.setOption(option, true);
+            
+            myChart.on('click', params => {
+                if (params.dataType === 'node') {
+                    console.log('点击节点:', params.data);
+                }
+            });
+        }
+
+        // 标签切换
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(`${tabName}-tab`).style.display = 'block';
+            document.querySelector(`.tab-btn:nth-child(${
+                tabName === 'specific' ? 1 : tabName === 'global' ? 2 : 3
+            })`).classList.add('active');
+        }
+
+        // 初始化事件监听
+        function initEventListeners() {
+            document.getElementById('nodeFile').addEventListener('change', function(e) {
+                documents = [];
+                parseCSV(e.target.files[0], data => {
+                    documents = data;
+                    initSelects();
+                    calculateNetworkMetrics(); 
+                    if (citations.length) renderChart();
+                    showNotification('节点文件加载成功', 'success');
+                });
+            });
+
+            document.getElementById('linkFile').addEventListener('change', function(e) {
+                citations = [];
+                parseCSV(e.target.files[0], data => {
+                    citations = data;
+                    calculateNetworkMetrics(); 
+                    if (documents.length) renderChart();
+                    showNotification('关系文件加载成功', 'success');
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                myChart.resize();
+                if (documents.length && citations.length) {
+                    const option = myChart.getOption();
+                    option.graphic = createFixedTimeAxis();
+                    myChart.setOption(option);
+                }
+            });
+        }
+
+        // 页面加载完成后初始化
+        window.onload = function() {
+            initEventListeners();
+            loadSampleData();
+            showTab('specific');
+        };
+    </script>
+</body>
+</html>
